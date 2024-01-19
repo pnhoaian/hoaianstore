@@ -125,8 +125,8 @@ class ProductController extends Controller
         }elseif($product->product_cost <= 0 ){
             Toastr::warning('Số tiền nhập không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
-        }elseif($product->product_price_sale > $product->product_cost){
-            Toastr::warning('Số tiền khuyến mãi không được lớn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+        }elseif($product->product_price_sale < $product->product_cost){
+            Toastr::warning('Số tiền khuyến mãi không được nhỏ hơn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }
         $product->product_status = $data['product_status'];
@@ -277,8 +277,8 @@ class ProductController extends Controller
             }elseif($product->product_cost <= 0 ){
                 Toastr::warning('Số tiền nhập không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
                 return Redirect::to('add-product');
-            }elseif($product->product_price_sale > $product->product_cost){
-                Toastr::warning('Số tiền khuyến mãi không được lớn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            }elseif($product->product_price_sale < $product->product_cost){
+                Toastr::warning('Số tiền khuyến mãi không được nhỏ giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
                 return Redirect::to('add-product');
             }
             else{

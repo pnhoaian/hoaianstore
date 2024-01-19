@@ -13,7 +13,7 @@
  					<div style="margin-top: 30px"> 
                         <!--       features_items            -->
 
-						<h2 class="title text-center">Sản phẩm mới</h2>
+						<h2 class="title text-center">Top Sản phẩm mới</h2>
 						@foreach ($all_product as $key => $product)		
 							<div class="col-sm-2" style="padding-right: 0px;width:20%">
 								<div class="product-image-wrapper" style="height: 390px;min-height: 390px;max-height: 390px;">
@@ -87,7 +87,7 @@
 
 																	<!----- End Sản phẩm mới ----->
 <div>
-					<h2 class="title text-center">Sản phẩm được xem nhiều</h2>
+					<h2 class="title text-center">TOP 10: Sản phẩm được xem nhiều</h2>
 						@foreach ($product_xem as $key => $product_x)		
 							<div class="col-sm-2" style="padding-right: 0px;width:20%">
 								<div class="product-image-wrapper" style="height: 390px;min-height: 390px;max-height: 390px;">

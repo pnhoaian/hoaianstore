@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $product_xem = DB::table('tbl_product')->where('product_status','1')->orderby('product_view','desc')->limit(10)->get();
         
-        $product_ban = DB::table('tbl_product')->where('product_status','1')->orderby('product_sold','desc')->limit(5)->get();
+        $product_ban = DB::table('tbl_product')->where('product_status','1')->orderby('product_sold','desc')->limit(10)->get();
         
 
         $min_price = Product::min('product_price');
@@ -59,7 +59,7 @@ class HomeController extends Controller
     
     public function search(Request $request){
         $category_post = CatePost::OrderBy('cate_post_id','Desc')->where('cate_post_status','1')->get();
-        $slider = Slider::orderby('slider_id','desc')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','desc')->where('slider_status','1')->where('slider_type',0)->take(4)->get();
         $cate_product =DB::table('tbl_category_product')->where('category_status','1')->orderby('category_id','desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','1')->orderby('brand_id','desc')->get();
         $keyword = $request->keywords_submit;
@@ -78,10 +78,6 @@ class HomeController extends Controller
         ->with('search_product',$search_product)
         ->with('search_product_count',$search_product_count);
     }
-
-
-
-
 
 
     public function autocomplete_ajax(Request $request){
@@ -108,7 +104,7 @@ class HomeController extends Controller
                 $output.='
                 <div style="display:flex;margin-bottom:5px">
                     <div>
-                        <li  class="li_search_ajax"><a style="font-weight: 600;text-align:center; padding: 5px">Không tìm thấy</a></li>
+                        <li  class="li_search_ajax"><a style="font-weight: 600;text-align:center; padding: 5px">Không tìm thấy kết quả</a></li>
                         
                     </div>
                 </div>
