@@ -385,7 +385,8 @@ public function momo_payment(Request $request){
 $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
-$amount = "10000";
+// $amount = "10000";
+$amount = $_POST['total-momo'];
 $orderId = time() . "";
 $redirectUrl = "http://localhost/hoaianstore/checkout";
 $ipnUrl = "http://localhost/hoaianstore/checkout";
