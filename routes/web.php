@@ -307,3 +307,5 @@ Route::get('/delete-slider/{slider_id}', [SliderController::class, 'delete_slide
 Route::get('/active-slider/{slider_id}', [SliderController::class, 'active_slider']);
 Route::get('/inactive-slider/{slider_id}', [SliderController::class, 'inactive_slider']);
 
+Route::post('/vnpay-payment', [CheckoutController::class, 'vnpay_payment']);
+Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);

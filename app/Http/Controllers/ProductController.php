@@ -121,6 +121,13 @@ class ProductController extends Controller
         }elseif($product->product_quantity <= 0 ){
             Toastr::warning('Số lượng sản phẩm không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
+
+        }elseif($product->product_cost <= 0 ){
+            Toastr::warning('Số tiền nhập không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            return Redirect::to('add-product');
+        }elseif($product->product_price_sale > $product->product_cost){
+            Toastr::warning('Số tiền khuyến mãi không được lớn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            return Redirect::to('add-product');
         }
         $product->product_status = $data['product_status'];
         $get_image = $request->file('product_image');
@@ -267,7 +274,14 @@ class ProductController extends Controller
             }elseif($product->product_quantity < 0 ){
                 Toastr::warning('Số lượng sản phẩm không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
                 return redirect()->back();
-            }else{
+            }elseif($product->product_cost <= 0 ){
+                Toastr::warning('Số tiền nhập không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+                return Redirect::to('add-product');
+            }elseif($product->product_price_sale > $product->product_cost){
+                Toastr::warning('Số tiền khuyến mãi không được lớn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+                return Redirect::to('add-product');
+            }
+            else{
                 $product->product_status = $data['product_status'];
             $get_image = $request->file('product_image');
             if ($get_image){

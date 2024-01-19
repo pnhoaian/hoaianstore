@@ -214,7 +214,7 @@
                     </td>
 
                 
-                    {{-- <td>
+                    <td>
                             <form method="POST" action="{{URL::to('/vnpay-payment')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="total-vnpay" value={{ $total_after }}>
@@ -230,7 +230,7 @@
                                 Thanh toán MOMO
                             </button>
                             </form>
-                        </td> --}}
+                        </td>
                     
                 </tr>
             @endif

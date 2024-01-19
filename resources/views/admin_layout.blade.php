@@ -239,7 +239,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="{{URL::to('/add-user')}}">Thêm tài khoản mới</a></li>
-                        <li><a href="{{URL::to('/all-user')}}">Danh sách tài khoản</a></li>
+                        <li><a href="{{URL::to('/users')}}">Danh sách tài khoản</a></li>
                     </ul>
                 </li>
                 @endhasrole
