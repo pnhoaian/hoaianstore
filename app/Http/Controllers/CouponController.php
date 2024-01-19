@@ -88,7 +88,10 @@ class CouponController extends Controller
             // $coupon->coupon_status = 0;
             Toastr::warning('Ngày bắt đầu không được lớn ngày kết thúc','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "3000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('insert-coupon');
-        }else{
+        }elseif($coupon->coupon_times == 0){
+            $coupon->coupon_status = 0;
+        }
+        else{
             $coupon->coupon_status = 1;
         }
 
@@ -127,6 +130,7 @@ class CouponController extends Controller
 
     public function list_coupon(){
         $this->AuthLogin();
+        
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('d/m/Y');
         $timestamp = strtotime('today');
         $coupon = Coupon::orderby('coupon_id','desc')->get();

@@ -92,7 +92,7 @@
             
 
             <td>
-                  @if( $cou->coupon_status ==1 )
+                  @if( $cou->coupon_status ==1 &&  $cou->coupon_times >0)
                     <span style="width: 110px;text-align: center;float: inherit;color: #33CC33;margin-bottom: 10px;font-family: -apple-system, system-ui, BlinkMacSystemFont;font-weight: 700;" 
                       >Còn hạn</span></a>
                   @else
@@ -104,7 +104,7 @@
             <td>
               <span class="text-ellipsis">
                 <?php
-                  if($cou->coupon_status == 1){
+                  if($cou->coupon_status == 1 &&  $cou->coupon_times >0){
                 ?>
                     <span style="width: 110px;text-align: center;float: inherit;color: #33CC33;margin-bottom: 10px;font-family: -apple-system, system-ui, BlinkMacSystemFont;font-weight: 700;" 
                     >Hoạt động</span></a>

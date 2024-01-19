@@ -310,7 +310,7 @@ class ProductController extends Controller
         $brand_product = DB::table('tbl_brand')->where('brand_status','1')->orderby('brand_id','desc')->get();
         
         //coupon
-        $show_coupon = Coupon::orderby('coupon_id','desc')->where('coupon_status','1')->get();
+        $show_coupon = Coupon::orderby('coupon_id','desc')->where('coupon_status','1')->where('coupon_times','>',0)->get();
 
 
         //gallery

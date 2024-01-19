@@ -31,7 +31,7 @@ class CartController extends Controller
             //Test mã đã sử dụng
             // return redirect()->back()->with('message','Khách hàng chưa sử dụng giảm giá này');
 
-            $coupon_login = Coupon::where('coupon_code',$data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
+            $coupon_login = Coupon::where('coupon_code',$data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->where('coupon_times','>',0)->first();
             if($coupon_login==true){
                 $count_coupon = $coupon_login->count();
                 if($count_coupon>0){
@@ -58,12 +58,12 @@ class CartController extends Controller
                     return redirect()->back()->with('message','Coupon khuyến mãi đã được áp dụng');
                 }
             }else{
-                return redirect()->back()->with('error','Coupon khuyến mãi không đúng hoặc đã hết hạn');
+                return redirect()->back()->with('error','Coupon khuyến mãi không đúng, đã hết hạn hoặc đã hết số lượng sử dụng');
             }
         }
         // Nếu chưa đăng nhập
     }else{
-        $coupon = Coupon::where('coupon_code',$data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->first();
+        $coupon = Coupon::where('coupon_code',$data['coupon'])->where('coupon_status',1)->where('coupon_date_end','>=',$today)->where('coupon_times','>',0)->first();
         if($coupon==true){
             $count_coupon = $coupon->count();
             if($count_coupon>0){
@@ -90,7 +90,7 @@ class CartController extends Controller
                 return redirect()->back()->with('message','Coupon khuyến mãi đã được áp dụng');
             }
         }else{
-            return redirect()->back()->with('error','Coupon khuyến mãi không đúng hoặc đã hết hạn');
+            return redirect()->back()->with('error','Coupon khuyến mãi không đúng, đã hết hạn hoặc hết số lượng sử dụng');
         }
     //Đóng mới thêm s/d
     }
