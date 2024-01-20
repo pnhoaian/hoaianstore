@@ -130,18 +130,20 @@ class CheckoutController extends Controller
         
         $data = $request->validate(
             [
-                'shipping_name' => 'required|max:255',   
+                'shipping_name' => 'required|max:255',  
+                'shipping_email' => 'required',    
                 'shipping_phone' => 'required|numeric|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
                 'shipping_address' => 'required|max:255',   
-                'shipping_email' => 'required',        
+                     
             ],
             [
                 'shipping_name.required' => 'Yêu cầu nhập tên người nhận hàng ',
+                'shipping_email.required' => 'Yêu cầu nhập Email',
                 'shipping_phone.required' => 'Yêu cầu nhập số điện thoại nhận hàng',
                 'shipping_phone.numeric' => 'Số điện thoại phải là dạng số ',
                 'shipping_phone.regex' => 'Số điện thoại không đúng định dạng ',
                 'shipping_address.required' => 'Yêu cầu nhập địa chỉ nhận hàng',
-                'shipping_email.required' => 'Yêu cầu nhập Email',
+                
             ]
             ); 
         

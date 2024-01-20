@@ -82,14 +82,14 @@ class ProductController extends Controller
                 'product_image.required' => 'Yêu cầu thêm hình ảnh cho sản phẩm ',
                 'product_image.image' => 'Không phải định dạng file ảnh ',
                 
-                'product_price.numeric' => '"Giá sản phẩm" không phải định dạng số ',
-                'product_price.required' => 'Yêu cầu nhập "GIÁ GỐC" cho sản phẩm ',
+                'product_price.numeric' => '"Giá trước khi giảm" không phải định dạng số ',
+                'product_price.required' => 'Yêu cầu nhập "GIÁ trước khi giảm" cho sản phẩm ',
 
                 'product_cost.required' => 'Yêu cầu nhập "GIÁ Nhập" cho sản phẩm ',
                 'product_cost.numeric' => '"Giá nhập" không phải định dạng số ',
 
-                'product_price_sale.required' => 'Yêu cầu nhập "GIÁ KHUYẾN MÃI" cho sản phẩm ',
-                'product_price_sale.numeric' => '"Giá Khuyến mãi sản phẩm" không phải định dạng số ',
+                'product_price_sale.required' => 'Yêu cầu nhập "GIÁ HIỆN THỊ" cho sản phẩm ',
+                'product_price_sale.numeric' => '"Giá hiện thị sản phẩm" không phải định dạng số ',
 
                 'product_quantity.required' => 'Yêu cầu nhập số lượng sản phẩm ' ,
                 'product_quantity.numeric' => '"Số lượng sản phẩm" không phải định dạng số ',
@@ -110,13 +110,13 @@ class ProductController extends Controller
 
         $product->product_quantity = $data['product_quantity'];
         if($product->product_price <= 0 ){
-            Toastr::warning('Số tiền gốc không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            Toastr::warning('"Giá tiền trước khi giảm" không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }elseif($product->product_price_sale <= 0 ){
-            Toastr::warning('Số tiền khuyến mãi không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            Toastr::warning('Giá tiền hiện thị không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }elseif($product->product_price_sale > $product->product_price){
-            Toastr::warning('Số tiền khuyến mãi không được lớn giá gốc','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            Toastr::warning('Số tiền hiện thị không được lớn hơn giá trước khi giảm','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }elseif($product->product_quantity <= 0 ){
             Toastr::warning('Số lượng sản phẩm không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
@@ -126,7 +126,10 @@ class ProductController extends Controller
             Toastr::warning('Số tiền nhập không được nhỏ hơn 0','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }elseif($product->product_price_sale < $product->product_cost){
-            Toastr::warning('Số tiền khuyến mãi không được nhỏ hơn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            Toastr::warning('Giá tiền hiện thị không được nhỏ hơn giá nhập','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
+            return Redirect::to('add-product');
+        }elseif($product->product_price < $product->product_cost){
+            Toastr::warning('Giá nhập không được lớn hơn giá trước khi giảm','Cảnh báo !', ["positionClass" => "toast-top-right","timeOut" => "2000","progressBar"=> true,"closeButton"=> true]);
             return Redirect::to('add-product');
         }
         $product->product_status = $data['product_status'];
@@ -237,11 +240,11 @@ class ProductController extends Controller
 
                 'product_image.image' => 'Không phải định dạng file ảnh ',
                 
-                'product_price.numeric' => '"Giá sản phẩm" không phải định dạng số ',
-                'product_price.required' => 'Yêu cầu nhập "GIÁ GỐC" cho sản phẩm ',
+                'product_price.numeric' => '"Giá trước khi giảm" không phải định dạng số ',
+                'product_price.required' => 'Yêu cầu nhập "GIÁ trước khi giảm" cho sản phẩm ',
 
-                'product_price_sale.required' => 'Yêu cầu nhập "GIÁ KHUYẾN MÃI" cho sản phẩm ',
-                'product_price_sale.numeric' => '"Giá Khuyến mãi sản phẩm" không phải định dạng số ',
+                'product_price_sale.required' => 'Yêu cầu nhập "GIÁ hiện thị" cho sản phẩm ',
+                'product_price_sale.numeric' => '"Giá hiện thị" không phải định dạng số ',
 
                 'product_cost.required' => 'Yêu cầu nhập "GIÁ Nhập" cho sản phẩm ',
                 'product_cost.numeric' => '"Giá nhập" không phải định dạng số ',
@@ -388,6 +391,7 @@ class ProductController extends Controller
     public function load_comment(Request $request){
         $product_id = $request->product_id;
         $comment = Comment::where('comment_product_id',$product_id)->where('comment_status',1)->get();
+        $comment_rep = Comment::with('product')->where('comment_parent_comment','>',0)->get();
         $output='';
 
         foreach ($comment as $key => $comm){

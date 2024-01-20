@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Giá Gốc</label>
+                            <label for="exampleInputEmail1">Giá trước khi giảm</label>
                             <input type="text" name="product_price" value="{{ old('product_price') }}" class="form-control" id="exampleInputEmail1" placeholder="Nhập giá Sản phẩm">
                         </div>
 
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Giá Khuyến Mãi</label>
+                            <label for="exampleInputEmail1">Giá hiện thị</label>
                             <input type="text" name="product_price_sale" value="{{ old('product_price_sale') }}" class="form-control" id="exampleInputEmail1" placeholder="Nhập giá Khuyến mãi">
                         </div>
 

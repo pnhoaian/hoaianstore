@@ -33,8 +33,8 @@
               <th>Hình ảnh</th>
               <th>Tên Sản phẩm</th>
               <th style="width: 90px;">Thư viện ảnh</th>
-              <th>Giá gốc</th>
-              <th style="width: 115px;">Giá khuyến mãi</th>
+              <th>Giá trước khi giảm</th>
+              <th style="width: 115px;">Giá hiện thị</th>
               <th style="width: 80px;">Số lượng</th>
               <th>Danh Mục</th>
               <th style="width: 95px;">Thương Hiệu</th>

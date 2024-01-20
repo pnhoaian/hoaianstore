@@ -80,7 +80,8 @@
                 @endforeach
                     <tr>
                         <td>
-                            <li style="color: #0213B0; font-style: italic">Nhận trực tiếp tại cửa hàng hoặc mua hàng với giá đơn >500,000đ Quý khách sẽ được miễn phí ship</li>
+                            <li style="color: #0213B0;list-style-type: none;padding-left: 20px;
+                            width: 200px;">Lưu ý: Với mỗi đơn hàng có tổng giá trị > 500.000 vnđ. Khách hàng sẽ được miễn phí phí vận chuyển.</li>
                         </td>
                         <td><input type="submit" value="Cập Nhật giỏ hàng" name="update-qty" class="check_out btn btn-default btn-sm"></td>
                         <td>
@@ -148,7 +149,7 @@
                         
                     @endphp
 
-                        <li style="color: #D0021B;">Tổng thanh toán chưa bao gồm phí vận chuyển 20k:
+                        <li style="color: #D0021B;">Tổng thanh toán:
                             <p></p>
                             @php
                                 if ( Session::get('coupon')) {
@@ -168,6 +169,7 @@
 
                             @endphp
                         </li>
+                        {{-- <p>chưa bao gồm phí vận chuyển 20k</p> --}}
                         </td>
 
                     </tr>

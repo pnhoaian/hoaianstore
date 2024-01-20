@@ -130,7 +130,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
 				</div>
 				<div class="sub-w3l">
-					<h6><a href="#">Quên mật khẩu</a></h6>
+					{{-- <h6><a href="#">Quên mật khẩu</a></h6> --}}
 					<h6>
 						<a href="{{URL::to('register')}}">Đăng ký tài khoản</a>
 					</h6>

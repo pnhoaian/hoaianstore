@@ -95,7 +95,7 @@
                                 @if (Session::get('coupon'))
                                 @foreach (Session::get('coupon') as $key => $cou)
                                             @if ($cou['coupon_condition'] == 1)
-                                            <li>Mã giảm giá : - {{ $cou['coupon_number'] }}%
+                                            <li>Mã giảm giá : {{ $cou['coupon_number'] }}%
                                                 @php
                                                     $total_coupon = ($total * $cou['coupon_number']) / 100;
                                                 @endphp
@@ -104,7 +104,7 @@
                                                 @php
                                                     $total_after_coupon = $total - $total_coupon; 
                                                 @endphp
-                                                Tổng giảm: -{{ number_format($total_coupon, 0, ',', '.') }} VNĐ
+                                                Tổng giảm: {{ number_format($total_coupon, 0, ',', '.') }} VNĐ
                                             </li>
                                                 
                                             
@@ -179,9 +179,9 @@
                     <tr >
                         <td colspan="5" style="text-align: right">
                             @if (Session::get('customer_id'))
-                            <a class="btn btn-default check_out " href="{{ url('/checkout') }}">Kiểm tra thông tin nhận hàng</a>
+                            <a class="btn btn-default check_out " href="{{ url('/checkout') }}">Đặt hàng</a>
                             @else
-                            <a class="btn btn-default check_out " href="{{ url('/login') }}">Thanh Toán</a>
+                            <a class="btn btn-default check_out " href="{{ url('/login') }}">Đặt hàng</a>
                             @endif
                         </td>
                     </tr>

@@ -23,7 +23,7 @@
             {{ session()->get('error') }}
         </div>
         @endif
-
+        <h2 style="color: green"> Thanh toán thành công </h2>
         <div>
           <h2>Lựa chọn phương thức thanh toán</h2>
           <form method="POST" action="{{URL::to('/vnpay-payment')}}" method="POST">

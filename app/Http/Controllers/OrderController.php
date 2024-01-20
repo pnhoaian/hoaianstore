@@ -420,12 +420,10 @@ class OrderController extends Controller
             }
         $customer = Customer::where('customer_id',$customer_id)->first();
         $shipping = Shipping::where('shipping_id',$shipping_id)->first();
-
             //
-            foreach($shipping as $key => $ship){
                 //
-                $shipping_method_receive = $ship->shipping_method_receive;
-            }
+                $shipping_method_receive = $shipping->shipping_method_receive;
+                
             //
 
         $order_details_product = OrderDetails::with('product')->where('order_code', $checkout_code)->get();
