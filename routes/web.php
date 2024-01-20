@@ -76,6 +76,8 @@ Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 //Kiem tra thong tin giao hang
 Route::get('/payment', [CheckoutController::class, 'payment']);
 
+Route::get('/payment-success', [CheckoutController::class, 'payment_success']);
+
 //Kiem tra thong tin giao hang
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
 

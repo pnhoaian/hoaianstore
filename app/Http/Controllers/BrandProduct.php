@@ -193,7 +193,7 @@ class BrandProduct extends Controller
 
 
     public function show_brand_home($brand_id){
-        $slider = Slider::orderby('slider_id','desc')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','desc')->where('slider_status','1')->where('slider_type',0)->take(4)->get();
         $slidermini = Slider::orderby('slider_id','desc')->where('slider_status','1')->where('slider_type',1)->take(3)->get();
         $cate_product =DB::table('tbl_category_product')
         ->where('category_status','1')->orderby('category_id','desc')->get();

@@ -80,7 +80,7 @@
                 @endforeach
                     <tr>
                         <td>
-                            <li>Nhận trực tiếp tại cửa hàng hoặc mua hàng với giá đơn >500,000đ Quý khách sẽ được miễn phí ship</li>
+                            <li style="color: #0213B0; font-style: italic">Nhận trực tiếp tại cửa hàng hoặc mua hàng với giá đơn >500,000đ Quý khách sẽ được miễn phí ship</li>
                         </td>
                         <td><input type="submit" value="Cập Nhật giỏ hàng" name="update-qty" class="check_out btn btn-default btn-sm"></td>
                         <td>
@@ -147,21 +147,6 @@
                         }
                         
                     @endphp
-{{-- || $data['shipping_method_receive'] =='0' --}}
-                        {{-- <li>Phí vận chuyển: 
-                            @if ( $total_after > 500000 )
-                                0đ
-                                @php                          
-                                    $fee = 0;                                                   
-                                @endphp
-                            @else
-                                20.000 VNĐ
-                                <p style="color: #0213B0; font-style: italic">* 0đ nếu nhận trực tiếp tại cửa hàng</p>
-                                @php
-                                    $fee = 20000;                     
-                                @endphp
-                            @endif
-                        </li> --}}
 
                         <li style="color: #D0021B;">Tổng thanh toán chưa bao gồm phí vận chuyển 20k:
                             <p></p>
@@ -191,7 +176,7 @@
             </form>
             @else
             <tr>
-                <td colspan="5" style="text-align: center"></td>
+                <td colspan="6" style="text-align: center"></td>
                     @php
                         echo'Không có sản phẩm trong giỏ hàng';
                     @endphp
@@ -245,8 +230,6 @@
                                                 <input type="hidden" name="order_coupon" class="order_coupon"
                                                     value="no">
                                             @endif
-
-
 
         @if(Session::get('cart'))
 

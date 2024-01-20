@@ -737,9 +737,11 @@
 						if (shipping_method_pay == 0) {
 							window.location.href =
 								"{{ url('/checkout') }}";
-						} else {
+						} 
+						else {
+							//(shipping_method_pay == 1)
 							window.location.href =
-								"{{ url('/gioi-thieu') }}";
+								"{{ url('/payment') }}";
 						}
 
 					},
@@ -905,13 +907,6 @@
             $('#search_ajax').fadeOut();
         });
     </script>
-
-
-	
-
-
-
-
 
 </body>
 </html>
