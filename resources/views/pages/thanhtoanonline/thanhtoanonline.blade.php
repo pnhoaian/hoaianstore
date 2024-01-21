@@ -87,7 +87,7 @@
         <h3 style="text-align: center">Lựa chọn phương thức thanh toán</a></h3>
     </div>
 
-    <div class="container" style="background-color: white;padding: 2px 16px;background-color: #f1f1f1;">
+    <div class="container" style="background-color: white;padding: 2px 16px;background-color: #f1f1f1;border-radius: 10px">
         {{-- <h2 style="text-align: center;font-size: large;text-decoration: underline;"><b><i>Giảm 10% cho hóa đơn mua hàng trên 2 triệu</i></b></h2> --}}
         <p>Khách hàng có thể lựa chọn 2 phương thức mà Hoài An Store hỗ trợ thanh toán </p>
     </div>
@@ -109,7 +109,7 @@
             height: 85%;"/></a> --}}
         
         <input type="hidden" name="total-vnpay"  value={{ $total_after }}>
-        <button type="submit" class="btn btn-default check_out" name="redirect" style="margin-right:425px">
+        <button type="submit" class="btn btn-default check_out" name="redirect" style="margin-right:425px;border-radius: 10px">
         Thanh toán VNPAY
     </button>
     </form>
@@ -117,7 +117,7 @@
     <form method="POST" action="{{URL::to('/momo-payment')}}" method="POST">
         @csrf
         <input type="hidden" name="total-momo" value={{ $total_after }}>
-        <button type="submit" class="btn btn-default check_out" name="payUrl" style="margin-right:35px">
+        <button type="submit" class="btn btn-default check_out" name="payUrl" style="margin-right:35px;border-radius: 10px">
         Thanh toán MOMO
     </button>
     </form>
