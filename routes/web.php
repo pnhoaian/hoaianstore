@@ -94,6 +94,10 @@ Route::get('/print-order/{checkout_code}', [OrderController::class, 'print_order
 // Lịch sử đơn hàng
 Route::get('/history', [OrderController::class, 'history']);
 
+// Chọn phương thức thanh toán online đơn hàng
+Route::get('/thanhtoanonline', [OrderController::class, 'thanhtoanonline']);
+
+
 Route::get('/view-history-order/{order_code}', [OrderController::class, 'view_history_order']);
 //update tình trạng đơn hàng
 Route::post('/update-order-qty', [OrderController::class, 'update_order_qty']);

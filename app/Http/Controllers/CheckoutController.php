@@ -127,7 +127,6 @@ class CheckoutController extends Controller
         //         'shipping_address.required' => 'Yêu cầu nhập địa chỉ nhận hàng',
         //     ]
         //     );     
-        
         $data = $request->validate(
             [
                 'shipping_name' => 'required|max:255',  
@@ -277,7 +276,7 @@ class CheckoutController extends Controller
 
 
         if($shipping->shipping_method_pay ==0){
-            Toastr::success('Đặt hàng thành công, đơn hàng đang được xử lý.','Thông báo !');
+            Toastr::success('Đặt hàng thành công, đơn hàng của bạn đang được kiểm tra.','Thông báo !');
         }
         Session::forget('coupon');
             Session::forget('fee');
@@ -350,24 +349,7 @@ class CheckoutController extends Controller
     }
 
     
-public function execPostRequest($url, $data)
-{
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($data))
-    );
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    //execute post
-    $result = curl_exec($ch);
-    //close connection
-    curl_close($ch);
-    return $result;
-}
+
 
 
 public function momo_payment(Request $request){
@@ -415,6 +397,24 @@ $extraData = "";
     //https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzA1NjU2MDAz&s=129b3ba252a92029403c3e0f9e95d4c7e78406fa65441f135187edcfc8036b7f
     return redirect()->to($jsonResult['payUrl']);
     // header('Location: ' . $jsonResult['payUrl']);
+}
+public function execPostRequest($url, $data)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data))
+    );
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    //execute post
+    $result = curl_exec($ch);
+    //close connection
+    curl_close($ch);
+    return $result;
 }
 
 

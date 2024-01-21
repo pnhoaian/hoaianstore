@@ -86,7 +86,7 @@
 											
 											<li><a href="{{ URL::to('/history') }}"></i>
 												<i class="fa fa-history" aria-hidden="true" style="margin-right: 10px;margin-left: -10px">
-												</i>Lịch sử đơn hàng</a>
+												</i>Lịch sử đặt hàng</a>
 											</li>
 
 											<li><a href="{{ URL::to('/logout-customer') }}">
@@ -733,15 +733,14 @@
 						shipping_method_receive: shipping_method_receive
 					},
 					success: function() {
-						alert('Đặt hàng thành công, chi tiết đơn đặt hàng sẽ được gửi qua mail của Quý khách');
 						if (shipping_method_pay == 0) {
 							window.location.href =
-								"{{ url('/checkout') }}";
+								"{{ url('/history') }}";
 						} 
 						else {
 							//(shipping_method_pay == 1)
 							window.location.href =
-								"{{ url('/payment') }}";
+								"{{ url('/thanhtoanonline') }}";
 						}
 
 					},
