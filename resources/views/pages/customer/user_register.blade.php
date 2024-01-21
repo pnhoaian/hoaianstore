@@ -21,6 +21,16 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body>
 	
+	@if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+                @endif
+
 <!-- main -->
 <div class="center-container">
 	<script src="{{asset('public/backend/js/toastr.min.js')}}"></script> 

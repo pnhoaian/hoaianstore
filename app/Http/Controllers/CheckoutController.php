@@ -62,7 +62,28 @@ class CheckoutController extends Controller
 
     public function register_customer(Request $request){
         $data = $request->all();
-    
+        $data = $request->validate(
+            [
+                'customer_name' => 'required|max:255',  
+                'customer_email' => 'required|unique:tbl_customer',    
+                'customer_phone' => 'required|numeric|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
+                'customer_address' => 'required|max:255',   
+                     
+            ],
+            [
+                'customer_name.required' => 'Yêu cầu nhập tên người nhận hàng ',
+                'customer_name.max' => 'Tên người dùng quá dài ',
+
+                'customer_email.required' => 'Yêu cầu nhập Email',
+                'customer_email.unique' => 'Email đã được sử dụng',
+
+                'customer_phone.required' => 'Yêu cầu nhập số điện thoại nhận hàng',
+                'customer_phone.numeric' => 'Số điện thoại phải là dạng số ',
+                'customer_phone.regex' => 'Số điện thoại không đúng định dạng ',
+                'customer_address.required' => 'Yêu cầu nhập địa chỉ nhận hàng',
+                
+            ]
+            ); 
         
         $customer = new Customer();
         $customer ->customer_name = $data['customer_name'];
@@ -73,7 +94,7 @@ class CheckoutController extends Controller
         $customer->save();
 
         Toastr::success('Vui lòng đăng nhập tài khoản','Đăng ký thành công! !', ["positionClass" => "toast-top-right","timeOut" => "3000","progressBar"=> true,"closeButton"=> true]);
-        return Redirect::to('/login');
+        return Redirect::to('/login')->with('success','Đăng ký thành công');
     }
 
 
