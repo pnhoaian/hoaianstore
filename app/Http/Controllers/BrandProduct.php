@@ -201,6 +201,8 @@ class BrandProduct extends Controller
         $brand_product = DB::table('tbl_brand')
         ->where('brand_status','1')->orderby('brand_id','desc')->get();
 
+       
+
         $brand_name = DB::table('tbl_brand')
         ->where('tbl_brand.brand_id',$brand_id)->limit(1)->get();
         $category_post = CatePost::OrderBy('cate_post_id','Desc')->get();
@@ -208,8 +210,21 @@ class BrandProduct extends Controller
         
         // $cate_pro_tabs = CateProduct::where('category_parent','<>',0)->orderBy('category_order','asc')->get();
 
+        $brand_product_soluong = DB::table('tbl_brand')
+        ->join('tbl_product','tbl_brand.brand_id','=','tbl_product.brand_id')
+        ->where('tbl_product.brand_id',$brand_id)
+        ->get();
+        $brand_product_count =  $brand_product_soluong->count();
+
+
+
 
         $brand_by_id = Brand::where('brand_id',$brand_id)->get();
+
+
+        
+
+
         foreach ($brand_by_id as $key => $brand) {
             $brand_id = $brand->brand_id;
         }
@@ -242,6 +257,7 @@ class BrandProduct extends Controller
         ->with('category_post',$category_post)
         ->with('slider',$slider)
         ->with('slidermini',$slidermini)
+        ->with('brand_product_count',$brand_product_count)
         
         
         // ->with('cate_pro_tabs',$cate_pro_tabs);

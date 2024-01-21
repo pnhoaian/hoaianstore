@@ -501,6 +501,7 @@ class OrderController extends Controller
                 $i=0;
                 $total = 0;
                 $total_after_coupon = 0;
+                
                 foreach($order_details_product as $key => $product){
                     $i++;
                 $subtotal = $product->Product_price * $product->Product_sales_quantity;
@@ -522,12 +523,13 @@ class OrderController extends Controller
                     </tr>';
                 }
                 if($coupon_condition == 1){
-                    //Phần trăm sau giảm
+                    //Sô tiền khuyến mãi
                     $total_after_coupon = ($total * $coupon_number)/100;
                     //Tổng tiền thanh toán
                     $total_coupon = $total - $total_after_coupon;
                 }else{
-                    $total_coupon = $total - $coupon_number;
+                    $total_after_coupon =  $coupon_number;
+                    $total_coupon = $total - $total_after_coupon;
                 }
 
                 //Phí ship
@@ -538,12 +540,15 @@ class OrderController extends Controller
                     $fee = 20000;
                 }
 
+//$total_after_coupon tổng đơn
+//total_coupon sau giảm coupon
                 $output.=' 
                     <tr >
                         <td colspan="5">
+                        
                             <p style="margin-left:480px">Phí Ship: '. number_format($fee, 0, ',', '.') . ' ' . '₫' .'</p>
                             <p style="margin-left:480px">Khuyến mãi: '. number_format($total_after_coupon, 0, ',', '.') . ' ' . '₫' .'</p>
-                            <p style="margin-left:480px">Số tiền thu: '.number_format($total +  $fee - $total_after_coupon, 0, ',', '.') . ' ' . '₫'.'</p>
+                            <p style="margin-left:480px">Số tiền thu: '.number_format($total+  $fee - $total_after_coupon, 0, ',', '.') . ' ' . '₫'.'</p>
                         </td>
                     </tr>
                 ';
@@ -588,6 +593,9 @@ class OrderController extends Controller
     public function thanhtoanonline(){
         if(!Session::get('customer_id')){
             return redirect('login');
+        }elseif(!Session::get('cart'))
+        {
+            return redirect('trang-chu');
         }else{
             $slider = Slider::orderby('slider_id','desc')->where('slider_status','1')->where('slider_type',0)->take(4)->get();
             $slidermini = Slider::orderby('slider_id','desc')->where('slider_status','1')->where('slider_type',1)->take(3)->get();

@@ -77,7 +77,7 @@
 </tbody>
 </form>
 @else
-
+    
 @endif
 
 
@@ -87,16 +87,11 @@
         <h3 style="text-align: center">Lựa chọn phương thức thanh toán</a></h3>
     </div>
 
-    <div class="container" style="background-color: white;padding: 2px 16px;background-color: #f1f1f1;border-radius: 10px">
-        {{-- <h2 style="text-align: center;font-size: large;text-decoration: underline;"><b><i>Giảm 10% cho hóa đơn mua hàng trên 2 triệu</i></b></h2> --}}
-        <p>Khách hàng có thể lựa chọn 2 phương thức mà Hoài An Store hỗ trợ thanh toán </p>
+    
+    <div style="margin-top: 30px">
+        <img src="{{asset('public/frontend/images/momo.png')}}" style="width: 150px; height: 150px; margin-right: 50px;margin-left: 380px">
+        <img src="{{asset('public/frontend/images/vnpay.png')}}" style="width: 150px; height: 150px;">
     </div>
-    {{-- <div class="container">
-        <p style="text-align: center;font-size: 20px;">MÃ KHUYẾN MÃI: <span style="background: #ccc;padding: 3px;">KHTH10</span></p>
-        <p style="text-align: center;color: red;">Ngày hết hạn: 31/01/2024</span></p>
-    </div> --}}
-    <img src="{{asset('public/frontend/images/momo.png')}}" style="width: 150px; height: 150px; margin-right: 50px;margin-left: 380px">
-    <img src="{{asset('public/frontend/images/vnpay.png')}}" style="width: 150px; height: 150px;">
 </div>
 
 

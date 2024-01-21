@@ -20,7 +20,7 @@
 </form>	
 
 {{-- <div>
-	<p>Số sản phẩm:  </p>
+	<p>Số sản phẩm: </p>
 </div> --}}
 													
 <div class="features_items">

@@ -93,8 +93,8 @@ class HomeController extends Controller
                     <img style="width:70px; height:80px"  src="'.asset('public/upload/product/'.$val->product_image).'" alt="">
                     <div>
                         <li  class="li_search_ajax"><a style="font-weight: 600;" href="'.url('/chi-tiet-san-pham/' .$val->product_id).'">'.$val->product_name.'</a></li>
-                        
                     </div>
+                    
                 </div>
                 
                 ';

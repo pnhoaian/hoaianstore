@@ -141,10 +141,11 @@
                     <td>{{ $details->Product_name }}</td>
                     <td>{{ $details->Product_sales_quantity }}</td>
 
-                    <input disabled type="number" min="1"
+                    <input style="color: white;background: white; border: aliceblue;" 
+                    disabled type="number" min="1"
                                         {{ $details->order_status == 2 ? 'disabled' : '' }}
                                         class="order_qty_{{ $details->product_id }}"
-                                        value="{{$details->Product_sales_quantity }}" name="product_sales_quantity">
+                                        value="{{$details->Product_sales_quantity }}" name="product_sales_quantity" >
 
                                         <input type="hidden" name="order_qty_storage"
                                         class="order_qty_storage_{{ $details->product_id }}"
@@ -168,14 +169,17 @@
 
                             $total_after_coupon = 0;
                     @endphp
+
                     @if ($coupon_condition==0)
                     @php
-                    //Phần trăm sau giảm
+                    //Số tiền giảm
                         $total_after_coupon = ($total * $coupon_number)/100;
+                        
                         //Tổng tiền thanh toán
                         $total_all = $total - $total_after_coupon + $details->product_feeship;
                         
-                    @endphp                       
+                    @endphp      
+
                     @else
                         @php
                             $total_all = $total - $coupon_number + $details->product_feeship;
@@ -234,10 +238,10 @@
                     @endif
 
                     </td>
-
                     <td>                        
+                        {{-- tổng tiền hàng + ship + tiền coupon --}}
                         Tổng thanh toán:                   
-                        {{ number_format($total + $fee - $total_after_coupon, 0, ',', '.') . ' ' . '₫' }} 
+                        {{ number_format($total_all + $fee, 0, ',', '.') . ' ' . '₫' }} 
                     </td>
                 </tr>
                 </tbody>

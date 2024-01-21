@@ -137,6 +137,15 @@ class CategoryProduct extends Controller
             $category_id = $cate->category_id;
         }
 
+
+        $category_product_soluong = DB::table('tbl_category_product')
+        ->join('tbl_product','tbl_category_product.category_id','=','tbl_product.category_id')
+        ->where('tbl_product.category_id',$category_id)
+        ->get();
+
+        $category_product_count =  $category_product_soluong->count();
+
+
         if(isset($_GET['sort_by'])){
             $sort_by = $_GET['sort_by'];
 
@@ -174,6 +183,8 @@ class CategoryProduct extends Controller
         ->with('slidermini',$slidermini)
         ->with('min_price',$min_price)
         ->with('max_price',$max_price)
+        ->with('category_product_count',$category_product_count)
+        
         // ->with('max_price_range',$max_price_range)
         ;
     }

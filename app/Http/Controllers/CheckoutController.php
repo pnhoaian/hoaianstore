@@ -135,19 +135,7 @@ class CheckoutController extends Controller
     }
 
     public function confirm_order(Request $request){
-        // $data = $request->validate(
-        //     [
-        //         'shipping_name' => 'required|max:150',   
-        //         'shipping_phone' => 'required|numeric|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
-        //         'shipping_address' => 'required',          
-        //     ],
-        //     [
-        //         'shipping_name.required' => 'Yêu cầu nhập tên người nhận hàng ',
-        //         'shipping_phone.required' => 'Yêu cầu nhập số điện thoại nhận hàng',
-        //         'shipping_phone.numeric' => 'Số điện thoại phải là dạng số ',
-        //         'shipping_address.required' => 'Yêu cầu nhập địa chỉ nhận hàng',
-        //     ]
-        //     );     
+
         $data = $request->validate(
             [
                 'shipping_name' => 'required|max:255',  
@@ -298,10 +286,11 @@ class CheckoutController extends Controller
 
         if($shipping->shipping_method_pay ==0){
             Toastr::success('Đặt hàng thành công, đơn hàng của bạn đang được kiểm tra.','Thông báo !');
-        }
-        Session::forget('coupon');
+            Session::forget('coupon');
             Session::forget('fee');
             Session::forget('cart');
+        }
+       
         
     }
 
@@ -374,7 +363,11 @@ class CheckoutController extends Controller
 
 
 public function momo_payment(Request $request){
-
+    if(Session::get('cart')==true){
+        Session::forget('coupon');
+        Session::forget('fee');
+        Session::forget('cart');
+    }
     $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
     $partnerCode = 'MOMOBKUN20180529';
@@ -413,10 +406,11 @@ $extraData = "";
     // dd($result);
     $jsonResult = json_decode($result, true);  // decode json
 
-
+    Toastr::success('Đặt hàng thành công, đơn hàng của bạn đang được kiểm tra.','Thông báo !');
     //Just a example, please check more in there
     //https://test-payment.momo.vn/v2/gateway/pay?t=TU9NT0JLVU4yMDE4MDUyOXwxNzA1NjU2MDAz&s=129b3ba252a92029403c3e0f9e95d4c7e78406fa65441f135187edcfc8036b7f
     return redirect()->to($jsonResult['payUrl']);
+    
     // header('Location: ' . $jsonResult['payUrl']);
 }
 public function execPostRequest($url, $data)
@@ -441,6 +435,11 @@ public function execPostRequest($url, $data)
 
     public function vnpay_payment(Request $request){
     $data = $request->all();
+    if(Session::get('cart')==true){
+        Session::forget('coupon');
+        Session::forget('fee');
+        Session::forget('cart');
+    }
     $code_cart = rand(00,9999);
 
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -532,6 +531,8 @@ public function execPostRequest($url, $data)
         } else {
             echo json_encode($returnData);
         }
+        Toastr::success('Đặt hàng thành công, đơn hàng của bạn đang được kiểm tra.','Thông báo !');
+
         // vui lòng tham khảo thêm tại code demo
         }
 
